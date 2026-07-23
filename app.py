@@ -109,12 +109,18 @@ def dashboard():
 
     departments = db.session.query(Student.department).distinct().count()
 
+    department_data = db.session.query(
+    Student.department,
+    db.func.count(Student.id)
+).group_by(Student.department).all()
+
     return render_template(
         "dashboard.html",
         total_students=total_students,
         male_students=male_students,
         female_students=female_students,
         departments=departments,
+        department_data=department_data,
         current_user=current_user
     
     )
