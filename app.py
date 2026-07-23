@@ -4,7 +4,6 @@ from config import Config
 from models import db, User, Student
 
 app = Flask(__name__)
-
 app.config.from_object(Config)
 
 db.init_app(app)
@@ -36,6 +35,11 @@ def login():
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
+
+
+@app.route("/logout")
+def logout():
+    return "<h2>Logout Successful</h2>"
 
 
 if __name__ == "__main__":
